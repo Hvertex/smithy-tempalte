@@ -1,0 +1,21 @@
+[workspace]
+members = [ 
+  "smithy/build/smithy/source/rust-client-codegen",
+  "smithy/build/smithy/source/rust-server-codegen",
+]
+resolver = "2"
+
+[workspace.dependencies]
+anyhow = "1"
+demand-client-sdk = { path = "smithy/build/smithy/source/rust-client-codegen" }
+demand-server-sdk = { path = "smithy/build/smithy/source/rust-server-codegen" }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1" }
+tokio = { version = "1", features = [
+  "rt",
+  "rt-multi-thread",
+  "macros",
+  "time",
+] }
+tracing = "0.1"
+tracing-subscriber = "0.3"

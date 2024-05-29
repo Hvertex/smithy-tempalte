@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "sources": [
+    "model"
+  ],
+  "maven": {
+    "dependencies": [
+      "software.amazon.smithy:smithy-model:[1.49.0,2.0)",
+      "software.amazon.smithy:smithy-validation-model:[1.49.0,2.0)",
+      "software.amazon.smithy:smithy-aws-traits:[1.49.0,2.0)",
+      "software.amazon.smithy:smithy-openapi:1.49.0",
+      "software.amazon.smithy.python:smithy-python-codegen:0.1.0",
+      "software.amazon.smithy.typescript:smithy-typescript-codegen:0.21.0",
+      "software.amazon.smithy.typescript:smithy-aws-typescript-codegen:0.21.0",
+      "software.amazon.smithy.rust.codegen:codegen-client:0.1.0",
+      "software.amazon.smithy.rust.codegen.server.smithy:codegen-server:0.1.0"
+    ]
+  },
+  "plugins": {
+    "openapi": {
+      "service": "com.adepps#DemandService",
+      "protocol": "aws.protocols#restJson1",
+      "version": "3.1.0",
+      "tags": true,
+      "useIntegerType": true,
+      "jsonAdd": {
+        "/servers": [
+          {
+            "url": "http://localhost:3000/api",
+            "description": "Local server"
+          }
+        ]
+      }
+    },
+    "rust-server-codegen": {
+      "service": "com.adepps#DemandService",
+      "module": "demand-server-sdk",
+      "moduleDescription": "Rust server SDK for echo server",
+      "moduleVersion": "0.1.0",
+      "moduleAuthors": [
+        "lw"
+      ],
+      "runtimeConfig": {
+        "versions": {
+          "DEFAULT": "1.0.1",
+          "aws-smithy-http": "0.60.7",
+          "aws-smithy-json": "0.60.7",
+          "aws-smithy-http-server": "0.61.2"
+        }
+      }
+    },
+    "python-client-codegen": {
+      "service": "com.adepps#DemandService",
+      "module": "demand",
+      "moduleVersion": "0.0.1"
+    },
+    "typescript-client-codegen": {
+      "package": "demand",
+      "packageVersion": "0.0.1"
+    },
+    "rust-client-codegen": {
+      "service": "com.adepps#DemandService",
+      "module": "demand-client-sdk",
+      "moduleDescription": "Rust client SDK for demand service",
+      "moduleVersion": "0.1.0",
+      "moduleAuthors": [
+        "lw"
+      ],
+      "runtimeConfig": {
+        "versions": {
+          "DEFAULT": "1.0.1",
+          "aws-smithy-http": "0.60.7",
+          "aws-smithy-json": "0.60.7"
+        }
+      }
+    }
+  }
+}
